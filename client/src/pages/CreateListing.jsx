@@ -1,8 +1,8 @@
 import {
-    getDownloadURL,
-    getStorage,
-    ref,
-    uploadBytesResumable,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
 } from 'firebase/storage';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
