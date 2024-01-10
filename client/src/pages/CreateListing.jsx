@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import {
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytesResumable,
+    getDownloadURL,
+    getStorage,
+    ref,
+    uploadBytesResumable,
 } from 'firebase/storage';
-import { app } from '../firebase';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { app } from '../firebase';
 
 export default function CreateListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -282,7 +282,7 @@ export default function CreateListing() {
               <div className='flex flex-col items-center'>
                 <p>Regular price</p>
                 {formData.type === 'rent' && (
-                  <span className='text-xs'>($ / month)</span>
+                  <span className='text-xs'>(Rs. / month)</span>
                 )}
               </div>
             </div>
@@ -302,7 +302,7 @@ export default function CreateListing() {
                   <p>Discounted price</p>
 
                   {formData.type === 'rent' && (
-                    <span className='text-xs'>($ / month)</span>
+                    <span className='text-xs'>(Rs. / month)</span>
                   )}
                 </div>
               </div>
