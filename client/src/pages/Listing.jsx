@@ -116,23 +116,23 @@ export default function Listing() {
             <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
               <li className='flex items-center gap-1 whitespace-nowrap '>
                 <FaInbox className='text-lg' />
-                {listing.bedrooms > 1
-                  ? `${listing.bedrooms} Quantity `
-                  : `${listing.bedrooms} Quantity `}
+                {listing.quantity > 1
+                  ? `${listing.quantity} Quantity `
+                  : `${listing.quantity} Quantity `}
               </li>
               <li className='flex items-center gap-1 whitespace-nowrap '>
                 <FaArchive className='text-lg' />
-                {listing.bathrooms > 1
-                  ? `${listing.bathrooms} Stock `
-                  : `${listing.bathrooms} Stock `}
+                {listing.stock > 1
+                  ? `${listing.stock} Stock `
+                  : `${listing.stock} Stock `}
               </li>
               <li className='flex items-center gap-1 whitespace-nowrap '>
                 <FaBed className='text-lg' />
-                {listing.parking ? 'Furniture' : 'Furniture'}
+                {listing.furniture ? 'Furniture' : 'Furniture'}
               </li>
               <li className='flex items-center gap-1 whitespace-nowrap '>
                 <FaBolt className='text-lg' />
-                {listing.furnished ? 'Brand New' : 'Brand New'}
+                {listing.brandnew ? 'Brand New' : 'Brand New'}
               </li>
             </ul>
             {currentUser && listing.userRef !== currentUser._id && !contact && (
