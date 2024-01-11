@@ -1,21 +1,21 @@
 import {
-    getDownloadURL,
-    getStorage,
-    ref,
-    uploadBytesResumable,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
 } from 'firebase/storage';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { app } from '../firebase';
 import {
-    deleteUserFailure,
-    deleteUserStart,
-    deleteUserSuccess,
-    signOutUserStart,
-    updateUserFailure,
-    updateUserStart,
-    updateUserSuccess,
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  signOutUserStart,
+  updateUserFailure,
+  updateUserStart,
+  updateUserSuccess,
 } from '../redux/user/userSlice';
 export default function Profile() {
   const fileRef = useRef(null);
@@ -251,7 +251,7 @@ export default function Profile() {
       {userListings && userListings.length > 0 && (
         <div className='flex flex-col gap-4'>
           <h1 className='text-center mt-7 text-2xl font-semibold'>
-            Your Listings
+            Your Products
           </h1>
           {userListings.map((listing) => (
             <div

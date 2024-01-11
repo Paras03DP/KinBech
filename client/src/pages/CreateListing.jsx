@@ -156,7 +156,7 @@ export default function CreateListing() {
   return (
     <main className='p-3 max-w-4xl mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>
-        Create a Listing
+        Upload your product
       </h1>
       <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
         <div className='flex flex-col gap-4 flex-1'>
@@ -218,7 +218,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 checked={formData.parking}
               />
-              <span>Parking spot</span>
+              <span>Furniture</span>
             </div>
             <div className='flex gap-2'>
               <input
@@ -228,7 +228,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 checked={formData.furnished}
               />
-              <span>Furnished</span>
+              <span>Brand New</span>
             </div>
             <div className='flex gap-2'>
               <input
@@ -253,7 +253,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 value={formData.bedrooms}
               />
-              <p>Beds</p>
+              <p>Quantity</p>
             </div>
             <div className='flex items-center gap-2'>
               <input
@@ -266,7 +266,7 @@ export default function CreateListing() {
                 onChange={handleChange}
                 value={formData.bathrooms}
               />
-              <p>Baths</p>
+              <p>Stock</p>
             </div>
             <div className='flex items-center gap-2'>
               <input
