@@ -219,7 +219,7 @@ export default function Profile() {
           {loading ? 'Loading...' : 'Update'}
         </button>
         <Link
-          className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
+          className='bg-orange-600 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
           to={'/create-listing'}
         >
           Create Listing
@@ -238,10 +238,10 @@ export default function Profile() {
       </div>
 
       <p className='text-red-700 mt-5'>{error ? error : ''}</p>
-      <p className='text-green-700 mt-5'>
+      <p className='text-orange-600 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
-      <button onClick={handleShowListings} className='text-green-700 w-full'>
+      <button onClick={handleShowListings} className='text-orange-600 w-full'>
         Show Listings
       </button>
       <p className='text-red-700 mt-5'>
@@ -280,7 +280,7 @@ export default function Profile() {
                   Delete
                 </button>
                 <Link to={`/update-listing/${listing._id}`}>
-                  <button className='text-green-700 uppercase'>Edit</button>
+                  <button className='text-orange-600 uppercase'>Edit</button>
                 </Link>
               </div>
             </div>

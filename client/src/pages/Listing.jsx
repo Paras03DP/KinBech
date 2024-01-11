@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import {
-    FaBath,
-    FaBed,
-    FaChair,
-    FaMapMarkerAlt,
-    FaParking,
-    FaShare
+  FaArchive,
+  FaBed,
+  FaBolt,
+  FaInbox,
+  FaMapMarkerAlt,
+  FaShare
 } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -115,24 +115,24 @@ export default function Listing() {
             </p>
             <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
               <li className='flex items-center gap-1 whitespace-nowrap '>
-                <FaBed className='text-lg' />
+                <FaInbox className='text-lg' />
                 {listing.bedrooms > 1
-                  ? `${listing.bedrooms} beds `
-                  : `${listing.bedrooms} bed `}
+                  ? `${listing.bedrooms} Quantity `
+                  : `${listing.bedrooms} Quantity `}
               </li>
               <li className='flex items-center gap-1 whitespace-nowrap '>
-                <FaBath className='text-lg' />
+                <FaArchive className='text-lg' />
                 {listing.bathrooms > 1
-                  ? `${listing.bathrooms} baths `
-                  : `${listing.bathrooms} bath `}
+                  ? `${listing.bathrooms} Stock `
+                  : `${listing.bathrooms} Stock `}
               </li>
               <li className='flex items-center gap-1 whitespace-nowrap '>
-                <FaParking className='text-lg' />
-                {listing.parking ? 'Parking spot' : 'No Parking'}
+                <FaBed className='text-lg' />
+                {listing.parking ? 'Furniture' : 'Furniture'}
               </li>
               <li className='flex items-center gap-1 whitespace-nowrap '>
-                <FaChair className='text-lg' />
-                {listing.furnished ? 'Furnished' : 'Unfurnished'}
+                <FaBolt className='text-lg' />
+                {listing.furnished ? 'Brand New' : 'Brand New'}
               </li>
             </ul>
             {currentUser && listing.userRef !== currentUser._id && !contact && (
