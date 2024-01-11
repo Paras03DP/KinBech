@@ -238,10 +238,10 @@ export default function Profile() {
       </div>
 
       <p className='text-red-700 mt-5'>{error ? error : ''}</p>
-      <p className='text-orange-600 mt-5'>
+      <p className='text-green-700 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
-      <button onClick={handleShowListings} className='text-orange-600 w-full'>
+      <button onClick={handleShowListings} className='text-black w-full'>
         Show Listings
       </button>
       <p className='text-red-700 mt-5'>
