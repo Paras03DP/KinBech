@@ -247,7 +247,7 @@ export default function CreateListing() {
                 type='number'
                 id='quantity'
                 min='1'
-                max='10'
+                max='50'
                 required
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}
@@ -259,8 +259,8 @@ export default function CreateListing() {
               <input
                 type='number'
                 id='stock'
-                min='1'
-                max='10'
+                min='0'
+                max='50'
                 required
                 className='p-3 border border-gray-300 rounded-lg'
                 onChange={handleChange}

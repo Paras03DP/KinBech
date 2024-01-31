@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import multer from 'multer'; // Import multer for handling file uploads
+import multer from 'multer';
 import User from '../models/user.model.js';
 import { errorHandler } from '../utils/error.js';
 
@@ -14,6 +14,9 @@ const avatarUpload = multer({
   storage: multer.memoryStorage(),
 }).single('avatar');
 
+// Email validation regex
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 // Login attempts tracking
 const MAX_LOGIN_ATTEMPTS = 3;
 const BAN_DURATION = 30000; // 30 seconds in milliseconds
@@ -26,6 +29,11 @@ export const signup = async (req, res, next) => {
     // Validate password complexity
     if (!PASSWORD_REGEX.test(password) || password.length < MIN_PASSWORD_LENGTH) {
       return next(errorHandler(400, 'Password must be unique !'));
+    }
+
+    // Validate email format
+    if (!validateEmail(email)) {
+      return next(errorHandler(400, 'Invalid email format'));
     }
 
     const hashedPassword = await bcryptjs.hash(password, 10);
@@ -80,6 +88,12 @@ export const signin = async (req, res, next) => {
 export const google = async (req, res, next) => {
   try {
     const { email, name, photo } = req.body;
+
+    // Validate email format
+    if (!validateEmail(email)) {
+      return next(errorHandler(400, 'Invalid email format'));
+    }
+
     const user = await User.findOne({ email });
 
     if (user) {
@@ -173,4 +187,9 @@ const handleInvalidLogin = (email) => {
     const banExpirationTime = Date.now() + BAN_DURATION;
     loginAttempts.set(email, banExpirationTime);
   }
+};
+
+// Email validation function
+const validateEmail = (email) => {
+  return EMAIL_REGEX.test(email);
 };
