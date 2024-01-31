@@ -7,6 +7,7 @@ export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams(window.location.search);
@@ -22,13 +23,13 @@ export default function Header() {
       setSearchTerm(searchTermFromUrl);
     }
   }, [location.search]);
+
   return (
     <header className='bg-orange-600 shadow-md'>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
             <span className='text-white'>KinBech</span>
-            {/* <span className='text-slate-700'></span> */}
           </h1>
         </Link>
         <form
@@ -46,26 +47,25 @@ export default function Header() {
             <FaSearch className='text-slate-600' />
           </button>
         </form>
-        <ul className='flex gap-4'>
+        <ul className='flex gap-4 items-center'>
           <Link to='/'>
-            <li className='hidden sm:inline text-white'>
-              Home
-            </li>
+            <li className='hidden sm:inline text-white'>Home</li>
           </Link>
           <Link to='/about'>
-            <li className='hidden sm:inline text-white'>
-              About
-            </li>
+            <li className='hidden sm:inline text-white'>About</li>
           </Link>
-          <Link to='/profile'>
+          <Link to='/profile' className='flex items-center text-white'>
             {currentUser ? (
-              <img
-                className='rounded-full h-7 w-7 object-cover'
-                src={currentUser.avatar}
-                alt='profile'
-              />
+              <>
+                <span className='mr-2'>{currentUser.username}</span>
+                <img
+                  className='rounded-full h-7 w-7 object-cover'
+                  src={currentUser.avatar}
+                  alt='profile'
+                />
+              </>
             ) : (
-              <li className=' text-white'> Sign in</li>
+              <li>Sign in</li>
             )}
           </Link>
         </ul>

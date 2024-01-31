@@ -1,3 +1,6 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   getDownloadURL,
   getStorage,
@@ -17,7 +20,8 @@ import {
   updateUserStart,
   updateUserSuccess,
 } from '../redux/user/userSlice';
-export default function Profile() {
+
+const Profile = () => {
   const fileRef = useRef(null);
   const { currentUser, loading, error } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined);
@@ -28,12 +32,6 @@ export default function Profile() {
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
   const dispatch = useDispatch();
-
-  // firebase storage
-  // allow read;
-  // allow write: if
-  // request.resource.size < 2 * 1024 * 1024 &&
-  // request.resource.contentType.matches('image/.*')
 
   useEffect(() => {
     if (file) {
@@ -50,8 +48,7 @@ export default function Profile() {
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setFilePerc(Math.round(progress));
       },
       (error) => {
@@ -120,6 +117,16 @@ export default function Profile() {
         return;
       }
       dispatch(deleteUserSuccess(data));
+      // Show sign out success message
+      toast.success('User has been logged out!', {
+        position: 'top-right',
+        autoClose: 3000, // 3 seconds
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       dispatch(deleteUserFailure(data.message));
     }
@@ -159,6 +166,7 @@ export default function Profile() {
       console.log(error.message);
     }
   };
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -287,6 +295,10 @@ export default function Profile() {
           ))}
         </div>
       )}
+
+      <ToastContainer />
     </div>
   );
-}
+};
+
+export default Profile;

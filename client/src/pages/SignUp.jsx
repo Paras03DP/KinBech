@@ -7,14 +7,23 @@ export default function SignUp() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Client-side validation
+    if (!formData.username || !formData.email || !formData.password) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
     try {
       setLoading(true);
       const res = await fetch('/api/auth/signup', {
@@ -24,21 +33,27 @@ export default function SignUp() {
         },
         body: JSON.stringify(formData),
       });
-      const data = await res.json();
-      console.log(data);
-      if (data.success === false) {
+
+      if (!res.ok) {
+        const data = await res.json();
         setLoading(false);
-        setError(data.message);
+        setError(data.message || "Failed to sign up.");
         return;
       }
+
+      const data = await res.json();
       setLoading(false);
       setError(null);
+      // Optionally handle token from the server
+      // For example, store it in an HTTP-only cookie
+      // Handle successful registration feedback (e.g., display success message)
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);
-      setError(error.message);
+      setError(error.message || "An error occurred.");
     }
   };
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
@@ -71,7 +86,7 @@ export default function SignUp() {
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
-        <OAuth/>
+        <OAuth />
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Have an account?</p>
