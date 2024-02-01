@@ -73,7 +73,7 @@ export const signin = async (req, res, next) => {
     // Successful login, reset login attempts
     loginAttempts.delete(email);
 
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, { expiresIn: '90d' });
     const { password: pass, ...rest } = validUser._doc;
 
     res
